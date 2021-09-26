@@ -1,8 +1,8 @@
-package com.yanshiqian.blogclass.service.impl;
+package com.yanshiqian.courseclass.service.impl;
 
-import com.yanshiqian.blogclass.entity.BlogSechapter;
-import com.yanshiqian.blogclass.mapper.BlogSechapterMapper;
-import com.yanshiqian.blogclass.service.BlogSechapterService;
+import com.yanshiqian.courseclass.entity.BlogSechapter;
+import com.yanshiqian.courseclass.mapper.BlogSechapterMapper;
+import com.yanshiqian.courseclass.service.BlogSechapterService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.yanshiqian.blogclass.mapper;
+package com.yanshiqian.courseclass.mapper;
 
-import com.yanshiqian.blogclass.entity.BlogClass;
+import com.yanshiqian.courseclass.entity.BlogClass;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

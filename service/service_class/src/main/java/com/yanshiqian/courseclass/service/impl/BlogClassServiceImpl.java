@@ -1,12 +1,10 @@
-package com.yanshiqian.blogclass.service.impl;
+package com.yanshiqian.courseclass.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.yanshiqian.blogclass.entity.BlogChapter;
-import com.yanshiqian.blogclass.entity.BlogClass;
-import com.yanshiqian.blogclass.mapper.BlogClassMapper;
-import com.yanshiqian.blogclass.service.BlogClassService;
+import com.yanshiqian.courseclass.entity.BlogClass;
+import com.yanshiqian.courseclass.mapper.BlogClassMapper;
+import com.yanshiqian.courseclass.service.BlogClassService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yanshiqian.servicebase.exceptionHandler.GuliException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,14 +43,14 @@ public class BlogClassServiceImpl extends ServiceImpl<BlogClassMapper, BlogClass
         queryWrapper.eq("id",id);
         BlogClass blogClass = baseMapper.selectOne(queryWrapper);
         if("0".equals(blogClass.getParentId())){
-             removeChildByIdGuli(id);
+             removeChildById(id);
         }else{
            baseMapper.deleteById(id);
         }
 
     }
     //============递归删除菜单==================================
-    public void removeChildByIdGuli(String id) {
+    public void removeChildById(String id) {
         //1 创建list集合，用于封装所有删除菜单id值
         List<String> idList = new ArrayList<>();
         //2 向idList集合设置删除菜单id

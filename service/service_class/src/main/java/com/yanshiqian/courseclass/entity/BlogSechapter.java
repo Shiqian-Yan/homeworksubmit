@@ -1,4 +1,4 @@
-package com.yanshiqian.blogclass.entity;
+package com.yanshiqian.courseclass.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 课程
+ * 课程视频
  * </p>
  *
  * @author yanshiqian
@@ -24,23 +24,25 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="BlogChapter对象", description="课程")
-public class BlogChapter implements Serializable {
+@ApiModel(value="BlogSechapter对象", description="课程视频")
+public class BlogSechapter implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "章节ID")
+    @ApiModelProperty(value = "视频ID")
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     @ApiModelProperty(value = "课程ID")
     private String courseId;
 
-    @ApiModelProperty(value = "章节名称")
-    private String title;
+    @ApiModelProperty(value = "章节ID")
+    private String chapterId;
 
-    @ApiModelProperty(value = "显示排序")
+
+    @ApiModelProperty(value = "排序字段")
     private Integer sort;
+
     @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "创建时间")
     private Date gmtCreate;

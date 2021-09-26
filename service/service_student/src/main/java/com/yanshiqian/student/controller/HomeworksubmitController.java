@@ -2,6 +2,7 @@ package com.yanshiqian.student.controller;
 
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yanshiqian.commonutils.R;
 import com.yanshiqian.student.client.AclClient;
 import com.yanshiqian.student.entity.Homeworksubmit;
@@ -67,6 +68,13 @@ public class HomeworksubmitController {
     @GetMapping("/download/{filename}/{filename2}")
     public void downLoadWordFile(HttpServletResponse response,@PathVariable String filename,@PathVariable String filename2) throws IOException, InvalidFormatException {
           homeworksubmitService.downLoad(response,filename,filename2);
+    }
+    @GetMapping("deleteCourse/{id}")
+    public R deleteCourse(@PathVariable String id){
+        QueryWrapper<Homeworksubmit> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("course_id",id);
+        homeworksubmitService.remove(queryWrapper);
+        return R.ok();
     }
 
 }

@@ -1,10 +1,7 @@
-package com.yanshiqian.blogclass.service;
+package com.yanshiqian.courseclass.service;
 
-import com.yanshiqian.blogclass.entity.BlogChapter;
+import com.yanshiqian.courseclass.entity.BlogChapter;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yanshiqian.blogclass.entity.BlogClass;
-
-import java.util.List;
 
 /**
  * <p>

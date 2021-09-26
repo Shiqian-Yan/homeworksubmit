@@ -1,6 +1,7 @@
 package com.yanshiqian.teacher.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yanshiqian.commonutils.R;
 import com.yanshiqian.teacher.entity.Homework;
 import com.yanshiqian.teacher.entity.vo.HomeworkQuery;
@@ -60,6 +61,13 @@ public class HomeworkController {
     public R listBlogById(@PathVariable String id) {
         Homework homework = homeworkService.getById(id);
         return R.ok().data("homework", homework);
+    }
+    @GetMapping("deleteCourse/{id}")
+    public R deleteCourse1(@PathVariable String id){
+        QueryWrapper<Homework> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("class_id",id);
+        homeworkService.remove(queryWrapper);
+        return R.ok();
     }
 }
 

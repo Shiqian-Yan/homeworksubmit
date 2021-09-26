@@ -1,6 +1,6 @@
-package com.yanshiqian.blogclass.service;
+package com.yanshiqian.courseclass.service;
 
-import com.yanshiqian.blogclass.entity.BlogSechapter;
+import com.yanshiqian.courseclass.entity.BlogSechapter;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

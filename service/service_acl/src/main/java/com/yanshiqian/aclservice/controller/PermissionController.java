@@ -38,14 +38,14 @@ public class PermissionController {
     @ApiOperation(value = "查询所有菜单")
     @GetMapping
     public R indexAllPermission() {
-        List<Permission> list =  permissionService.queryAllMenuGuli();
+        List<Permission> list =  permissionService.queryAllMenu();
         return R.ok().data("children",list);
     }
     @PreAuthorize("hasAuthority('permission.remove')")
     @ApiOperation(value = "递归删除菜单")
     @DeleteMapping("remove/{id}")
     public R remove(@PathVariable String id) {
-        permissionService.removeChildByIdGuli(id);
+        permissionService.removeChildById(id);
         return R.ok();
     }
     @PreAuthorize("hasAuthority('role.acl')")
@@ -58,7 +58,7 @@ public class PermissionController {
         if(list!=null){
             rolePermissionService.remove(queryWrapper);
         }
-        permissionService.saveRolePermissionRealtionShipGuli(roleId,permissionId);
+        permissionService.saveRolePermissionRealtionShip(roleId,permissionId);
         return R.ok();
     }
 

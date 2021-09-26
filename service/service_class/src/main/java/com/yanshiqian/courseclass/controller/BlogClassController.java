@@ -1,10 +1,10 @@
-package com.yanshiqian.blogclass.controller;
+package com.yanshiqian.courseclass.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.yanshiqian.blogclass.entity.BlogChapter;
-import com.yanshiqian.blogclass.entity.BlogClass;
-import com.yanshiqian.blogclass.service.BlogClassService;
+import com.yanshiqian.courseclass.client.StudentClient;
+import com.yanshiqian.courseclass.client.TeacherClient;
+import com.yanshiqian.courseclass.entity.BlogClass;
+import com.yanshiqian.courseclass.service.BlogClassService;
 import com.yanshiqian.commonutils.R;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/blogclass/class")
 public class BlogClassController {
+    @Autowired
+    private StudentClient studentClient;
+    @Autowired
+    private TeacherClient teacherClient;
     @Autowired
     private BlogClassService blogClassService;
     @PreAuthorize("hasAuthority('subject.list')")
@@ -73,6 +77,8 @@ public class BlogClassController {
     @DeleteMapping("{id}")
      public R deleteById(@PathVariable String id){
         blogClassService.deleteClassById(id);
+        teacherClient.deleteCourse1(id);
+        studentClient.deleteCourse(id);
          return R.ok();
     }
     @PreAuthorize("hasAuthority('subject.import')")

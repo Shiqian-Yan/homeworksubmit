@@ -41,7 +41,7 @@ public class IndexServiceImpl implements IndexService {
         Map<String, Object> result = new HashMap<>();
         User user = userService.selectByUsername(username);
         if (null == user) {
-            //throw new GuliException(ResultCodeEnum.FETCH_USERINFO_ERROR);
+            //throw new GlobalException(ResultCodeEnum.FETCH_USERINFO_ERROR);
         }
 
         //根据用户id获取角色

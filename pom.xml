@@ -14,10 +14,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.yanshiqian</groupId>
-    <artifactId>guli_parent</artifactId>
+    <artifactId>ysq_homework</artifactId>
     <packaging>pom</packaging> <!--father project-->
     <version>0.0.1-SNAPSHOT</version>
-    <name>guli_parent</name>
+    <name>ysq_homework</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
