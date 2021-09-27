@@ -4,6 +4,7 @@ package com.yanshiqian.serviceregister.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yanshiqian.commonutils.MD5;
 import com.yanshiqian.commonutils.R;
+import com.yanshiqian.servicebase.exceptionHandler.GlobalException;
 import com.yanshiqian.serviceregister.entity.AclUser;
 import com.yanshiqian.serviceregister.service.AclUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,11 @@ public class AclUserController {
     @PostMapping("/register")
     public R registerUser(@RequestBody AclUser aclUser){
         aclUser.setPassword(MD5.encrypt(aclUser.getPassword()));
-        aclUserService.save(aclUser);
+        try {
+            aclUserService.save(aclUser);
+        }catch (Exception e){
+            throw new GlobalException(20001,"学号/账号重复,请刷新页面重新填写");
+        }
         return R.ok().data("userId",aclUser.getId());
     }
 }

@@ -3,6 +3,7 @@ package com.yanshiqian.student.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yanshiqian.student.client.ClassClient;
+import com.yanshiqian.student.client.TeacherClient;
 import com.yanshiqian.student.entity.Homeworksubmit;
 
 import com.yanshiqian.student.entity.vo.HomeworksubmitQuery;
@@ -35,6 +36,8 @@ import java.util.Map;
 public class HomeworksubmitServiceImpl extends ServiceImpl<HomeworksubmitMapper, Homeworksubmit> implements HomeworksubmitService {
     @Autowired
     private ClassClient client;
+    @Autowired
+    private TeacherClient teacherClient;
 
     @Override
     public Homeworksubmit upload(MultipartFile file, Map<String, Object> map,  String courseId, String times,String year) {
@@ -58,6 +61,7 @@ public class HomeworksubmitServiceImpl extends ServiceImpl<HomeworksubmitMapper,
 
         res.setCourseId(courseId);
         res.setTimes(times);
+        res.setEnd(teacherClient.getEnd(times,courseId));
         String oldFileName = filepath + file.getOriginalFilename();
         // 旧的文件或目录
         File oldName = new File(oldFileName);
@@ -69,7 +73,9 @@ public class HomeworksubmitServiceImpl extends ServiceImpl<HomeworksubmitMapper,
             newName.delete();
         }
         oldName.renameTo(newName);
+
         res.setPath(client.getCourseName(courseId)+year+"/"+client.getCourseName(courseId)+"第"+times+"次作业"+"-"+(String)map.get("nickname")+"-"+(String)map.get("username")+"-"+(String) map.get("stuClass")+suffix);
+        System.out.println(res);
         baseMapper.insert(res);
         return res;
     }

@@ -38,6 +38,7 @@ public class Homeworksubmit implements Serializable {
     private String courseId;
     private String times;
     private String path;
+    private Date end;
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
     @TableField(fill = FieldFill.INSERT_UPDATE)

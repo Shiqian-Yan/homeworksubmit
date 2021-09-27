@@ -11,6 +11,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,8 +31,18 @@ public class HomeworkController {
     @PreAuthorize("hasAuthority('homework.add')")
     @PostMapping("add")
     public R addBlog(@RequestBody Homework homework){
-        homeworkService.addHomework(homework);
-        return R.ok();
+        QueryWrapper<Homework> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("times",homework.getTimes());
+        queryWrapper.eq("class_id",homework.getClassId());
+        List<Homework> list = homeworkService.list(queryWrapper);
+        System.out.println(list);
+        if(list.size()==0) {
+            homeworkService.addHomework(homework);
+            return R.ok();
+        }else{
+            return R.error().message("重复发布作业了");
+        }
+
     }
     //更新博客
     @PreAuthorize("hasAuthority('homework.update')")
@@ -68,6 +80,19 @@ public class HomeworkController {
         queryWrapper.eq("class_id",id);
         homeworkService.remove(queryWrapper);
         return R.ok();
+    }
+    @GetMapping("getContent/{id}")
+    public R content(@PathVariable String id){
+        Homework homework = homeworkService.getById(id);
+        return R.ok().data("homework",homework);
+    }
+    @GetMapping("getEnd/{times}/{id}")
+    public Date getEnd(@PathVariable String times,@PathVariable String id){
+        QueryWrapper<Homework> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("times",times);
+        queryWrapper.eq("class_id",id);
+        Homework homework = homeworkService.getOne(queryWrapper);
+        return homework.getEnd();
     }
 }
 

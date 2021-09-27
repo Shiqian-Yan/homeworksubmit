@@ -47,6 +47,10 @@ public class Homework implements Serializable {
 
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
     private Boolean isDeleted;
+
+    @ApiModelProperty(value = "截止时间")
+    private Date end;
+
     @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "创建时间")
     private Date gmtCreate;
