@@ -1,4 +1,4 @@
-package com.yanshiqian.servicebase;
+package com.yanshiqian.servicebase.config;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

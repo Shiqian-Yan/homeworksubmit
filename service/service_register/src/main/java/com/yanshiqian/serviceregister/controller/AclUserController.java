@@ -28,7 +28,7 @@ public class AclUserController {
     @Autowired
     private AclUserService aclUserService;
     @PostMapping("/register")
-    public R registerUser(@RequestBody AclUser aclUser){
+    public  synchronized R registerUser(@RequestBody AclUser aclUser){
         aclUser.setPassword(MD5.encrypt(aclUser.getPassword()));
         try {
             aclUserService.save(aclUser);

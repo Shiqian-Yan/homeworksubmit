@@ -2,8 +2,8 @@ package com.yanshiqian.student.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yanshiqian.student.client.ClassClient;
-import com.yanshiqian.student.client.TeacherClient;
+import com.yanshiqian.feign.client.ClassClient;
+import com.yanshiqian.feign.client.TeacherClient;
 import com.yanshiqian.student.entity.Homeworksubmit;
 
 import com.yanshiqian.student.entity.vo.HomeworksubmitQuery;
@@ -41,7 +41,8 @@ public class HomeworksubmitServiceImpl extends ServiceImpl<HomeworksubmitMapper,
 
     @Override
     public Homeworksubmit upload(MultipartFile file, Map<String, Object> map,  String courseId, String times,String year) {
-        String filepath ="D:/hometest/"+client.getCourseName(courseId)+year+"/";
+//        String filepath ="/usr/local/homework/"+client.getCourseName(courseId)+year+"/";
+        String filepath ="D://hometest/"+client.getCourseName(courseId)+year+"/";
         File targetFile = new File(filepath);
         if (!targetFile.exists()) {
             targetFile.mkdirs();
@@ -82,7 +83,7 @@ public class HomeworksubmitServiceImpl extends ServiceImpl<HomeworksubmitMapper,
 
     @Override
     public void downLoad(HttpServletResponse response,  String filename,String filename2) throws IOException, InvalidFormatException {
-        String filePath = "D:/hometest" ;
+        String filePath = "D://hometest" ;
 
         File file = new File(filePath + "/" + filename+"/"+filename2);
         if(file.exists()){

@@ -15,6 +15,7 @@
         <module>service_base</module>
         <module>common_utils</module>
         <module>spring_security</module>
+        <module>feign_api</module>
     </modules>
     <dependencies>
 

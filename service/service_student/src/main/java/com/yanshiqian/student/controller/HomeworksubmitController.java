@@ -3,8 +3,8 @@ package com.yanshiqian.student.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yanshiqian.feign.client.AclClient;
 import com.yanshiqian.commonutils.R;
-import com.yanshiqian.student.client.AclClient;
 import com.yanshiqian.student.entity.Homeworksubmit;
 
 import com.yanshiqian.student.entity.vo.HomeworksubmitQuery;
