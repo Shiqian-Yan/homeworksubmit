@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @MapperScan({"com.yanshiqian.aclservice.mapper","com.yanshiqian.student.mapper","com.yanshiqian.teacher.mapper"})
-public class Pageconfig {
+public class PageConfig {
     @Bean
     public ISqlInjector sqlInjector() {
         return new LogicSqlInjector();
