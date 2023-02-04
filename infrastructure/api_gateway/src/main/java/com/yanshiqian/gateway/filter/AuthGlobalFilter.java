@@ -32,7 +32,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
-        //谷粒学院api接口，校验用户必须登录
+        //作业提交系统api接口，校验用户必须登录
         if(antPathMatcher.match("/api/**/auth/**", path)) {
             List<String> tokenList = request.getHeaders().get("token");
             if(null == tokenList) {
@@ -55,6 +55,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     }
 
     @Override
+    //过滤器优先级
     public int getOrder() {
         return 0;
     }

@@ -45,7 +45,7 @@ public class HomeworksubmitController {
     }
     @PreAuthorize("hasAuthority('homeworksub.list')")
     @PostMapping("list/{current}/{limit}")
-    public R listBlog(@PathVariable long current,
+    public R listPage(@PathVariable long current,
                       @PathVariable long limit){
         Map<String, Object> userInfo = client.getUserInfo();
         Map<String,Object> map = homeworksubmitService.listPage(current,limit,userInfo);
@@ -53,7 +53,7 @@ public class HomeworksubmitController {
     }
     @PreAuthorize("hasAuthority('homeworksub.list')")
     @PostMapping("listAll/{current}/{limit}")
-    public R listAllBlog(@PathVariable long current,
+    public R listAllPage(@PathVariable long current,
                          @PathVariable long limit, @RequestBody(required = false) HomeworksubmitQuery homeworksubmitQuery){
 
         Map<String,Object> map = homeworksubmitService.listPage(current,limit, homeworksubmitQuery);
@@ -61,7 +61,7 @@ public class HomeworksubmitController {
     }
     @PreAuthorize("hasAuthority('homeworksub.delete')")
     @DeleteMapping("delete/{id}")
-    public R deleteBlog(@PathVariable String id){
+    public R deleteSubmitHomework(@PathVariable String id){
         homeworksubmitService.deleteSubmitHomework(id);
         return R.ok();
     }
