@@ -30,7 +30,7 @@ public class HomeworkController {
     private HomeworkService homeworkService;
     @PreAuthorize("hasAuthority('homework.add')")
     @PostMapping("add")
-    public R addBlog(@RequestBody Homework homework){
+    public R addHomework(@RequestBody Homework homework){
         QueryWrapper<Homework> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("times",homework.getTimes());
         queryWrapper.eq("class_id",homework.getClassId());
@@ -47,7 +47,7 @@ public class HomeworkController {
     //更新博客
     @PreAuthorize("hasAuthority('homework.update')")
     @PostMapping("update/{id}")
-    public R updateBlog(@RequestBody Homework homework,@PathVariable String id){
+    public R updateHomework(@RequestBody Homework homework,@PathVariable String id){
 
         homeworkService.updateHomework(homework,id);
         return R.ok();
@@ -55,7 +55,7 @@ public class HomeworkController {
     //列表博客
 
     @PostMapping("list/{current}/{limit}")
-    public R listBlog(@PathVariable long current,
+    public R listPage(@PathVariable long current,
                       @PathVariable long limit,
                       @RequestBody(required = false) HomeworkQuery homeworkQuery){
 
@@ -64,13 +64,13 @@ public class HomeworkController {
     }
     @PreAuthorize("hasAuthority('homework.delete')")
     @DeleteMapping("delete/{id}")
-    public R deleteBlog(@PathVariable String id){
+    public R deleteHomework(@PathVariable String id){
         homeworkService.deleteHomework(id);
         return R.ok();
     }
 
     @GetMapping("listHomeworkById/{id}")
-    public R listBlogById(@PathVariable String id) {
+    public R getById(@PathVariable String id) {
         Homework homework = homeworkService.getById(id);
         return R.ok().data("homework", homework);
     }
